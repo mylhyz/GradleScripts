@@ -1,0 +1,20 @@
+/**
+ * 获取Git 分支名
+ */
+def getGitBranch() {
+    return 'git symbolic-ref --short -q HEAD'.execute().text.trim()
+}
+
+/**
+ * 获取Git 版本号
+ */
+def getGitSHA() {
+    return 'git rev-parse --short HEAD'.execute().text.trim()
+}
+
+/**
+ * 获取Git 提交次数
+ */
+def getGitCommitCount() {
+    return 100 + Interger.parse('git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
+}
